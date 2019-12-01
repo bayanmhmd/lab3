@@ -59,3 +59,54 @@ $.get('../data/page-1.json')
     });
   })
   .then( () => populateSelectBox() );
+  .then(() => {sortByTitle(ItemAll)
+  };
+  .then(render);
+}
+
+  function sortByTitle(array) {
+    array.sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      }
+      else if (a.title < b.title) {
+        return -1;
+      }
+      else {return 0;}
+    });
+  }
+  
+  function sortByHorns(array) {
+   
+   array.sort((a, b) => a.horns - b.horns);
+  
+  }
+  
+  
+  
+  readData(); 
+  
+  $('select').on('change', function(){
+    let $select = $(this).val();
+    $('div').hide();
+    $(`div[data-keyword="${$select}"]`).show();
+  });
+  
+  $('button[value="page1"]').on('click', () => {
+    readData('page-1');
+  });
+  $('button[value="page2"]').on('click', () => {
+    readData('page-2');
+  });
+  
+  $('button[value="sortKeyword"]').on('click', () => {
+    $('main').html('');
+    sortByTitle(ItemAll);
+    render();
+  });
+  $('button[value="sortKeyword2"]').on('click', () => {
+    $('main').html('');
+      sortByHorns(ItemAll);
+      render();
+  
+  });
